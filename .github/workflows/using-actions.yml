@@ -17,5 +17,3 @@ jobs:
             - name: Install Dependencies
               working-directory: ./react-app/
               run: npm ci
-            
-            - name: 
