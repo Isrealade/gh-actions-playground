@@ -40,9 +40,9 @@ jobs:
                 MY_OVERWRITTEN_VAR: step
               run: |
                 echo "Workflow env: ${{env.MY_WORKFLOW_VAR}}"
-                echo "Oerwrittern env: ${{env.MY_OVERWRITTEN_VAR}}"
+                echo "Overwrittern env: ${{env.MY_OVERWRITTEN_VAR}}"
 
             - name: Print Env Variables 2
               run: |
                 echo "Workflow env: ${{env.MY_WORKFLOW_VAR}}"
-                echo "Oerwrittern env: ${{env.MY_OVERWRITTEN_VAR}}"
+                echo "Overwrittern env: ${{env.MY_OVERWRITTEN_VAR}}"
