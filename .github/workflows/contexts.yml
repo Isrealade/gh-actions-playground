@@ -1,14 +1,26 @@
 name: Contexts
 
+run-name: Contexts | DEBUG - ${{inputs.debug}}
+
 on: 
-    - push
-    - workflow_dispatch
+    push:
+    workflow_dispatch:
+        inputs:
+            debug:
+                type: boolean
+                default: false
 
-run-name: My custom workflow run name - ${{runner.os}}
+env:
+    MY_WORKFLOW_VAR: workflow
+    MY_OVERWRITTER_VAR: workflow
 
+    
 jobs: 
     echo-data:
         runs-on: ubuntu-latest
+        env:
+            MY_JOB_VAR: job
+            MY_OVERWRITTEN_VAR: job
         steps:
             - name: Display Information
               run: |
@@ -21,5 +33,16 @@ jobs:
                 echo "Run number: ${{github.run_number}}"
             - name: Retrieve Variable
               run: |
-               echo "$MY_VAR"
+               echo "${{vars.MY_VAR}}"
+            
+            - name: Print Env Variables
+              env:
+                MY_OVERWRITTEN_VAR: step
+              run: |
+                echo "Workflow env: ${{env.MY_WORKFLOW_VAR}}"
+                echo "Oerwrittern env: ${{env.MY_OVERWRITTEN_VAR}}"
 
+            - name: Print Env Variables 2
+              run: |
+                echo "Workflow env: ${{env.MY_WORKFLOW_VAR}}"
+                echo "Oerwrittern env: ${{env.MY_OVERWRITTEN_VAR}}"
