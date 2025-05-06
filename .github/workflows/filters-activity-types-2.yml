@@ -1,4 +1,4 @@
-name: vent Filters and Activity Types 2
+name: Event Filters and Activity Types 2
 
 on:
     pull_request:
