@@ -41,7 +41,7 @@ jobs:
               uses: actions/upload-artifact@v4
               with:
                 name: ${{ env.test-coverage-key }}
-                path: artifacts/react-app/build
+                path: artifacts/react-app/coverage
 
             - name: Build code
               run: npm run build
@@ -50,7 +50,7 @@ jobs:
               uses: actions/upload-artifact@v4
               with:
                 name: ${{ env.build-artifact-key }}
-                path: artifacts/react-app/coverage
+                path: artifacts/react-app/build
 
     deploy:
         runs-on: ubuntu-latest
