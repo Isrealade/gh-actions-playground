@@ -40,7 +40,7 @@ jobs:
             - name: Upload test results
               uses: actions/upload-artifact@v4
               with:
-                name: ${{ env.build-artifact-key }}
+                name: ${{ env.test-coverage-key }}
                 path: artifacts/react-app/build
 
             - name: Build code
@@ -49,7 +49,7 @@ jobs:
             - name: Upload build files
               uses: actions/upload-artifact@v4
               with:
-                name: ${{ env.test-coverage-key }}
+                name: ${{ env.build-artifact-key }}
                 path: artifacts/react-app/coverage
 
     deploy:
@@ -59,7 +59,7 @@ jobs:
             - name: Download build files
               uses: actions/download-artifact@v4
               with:
-                name: app-${{ github.sha }}
+                name: ${{ env.build-artifact-key }}
                 path: build
             
             - name: Show folder structure
