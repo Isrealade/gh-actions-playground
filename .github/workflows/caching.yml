@@ -23,6 +23,7 @@ jobs:
               working-directory: ./react-app
               run: npm ci
             - name: Testing
+              working-directory: ./react-app
               run: npm test
             - name: Building
               run: npm run build
