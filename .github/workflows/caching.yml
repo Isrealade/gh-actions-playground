@@ -20,9 +20,13 @@ on:
 jobs:
     build:
         runs-on: ubuntu-latest
+        defaults:
+            run:
+                working-directory: ./react-app
         steps:
             - name: Checkout Code
               uses: actions/checkout@v4
+
             - name: Setup Node
               uses: actions/setup-node@v4
               with:
@@ -34,20 +38,16 @@ jobs:
               uses: actions/cache@v3
               with:
                 path: ./react-app/node_modules
-                key: "deps-node-modules-${{ hashFiles('./react-app/package-lock.json') }}"
-              
+                key: "deps-node-modules-${{ hashFiles('./react-app/package-lock.json') }}"          
 
             - name: Install dependencies
               if: steps.cache.outputs.cache-hit == true
-              working-directory: ./react-app
               run: npm ci
 
             - name: Testing
-              working-directory: ./react-app
               run: npm run test
 
             - name: Building
-              working-directory: ./react-app
               run: npm run build
 
             - name: Deploying to nonprod
