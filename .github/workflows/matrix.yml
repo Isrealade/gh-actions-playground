@@ -1,4 +1,4 @@
-name: Workig with Matrices
+name: Workig with Matrix
 
 on: 
     workflow_dispatch:
