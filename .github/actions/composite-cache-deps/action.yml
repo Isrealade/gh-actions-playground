@@ -34,14 +34,15 @@ runs:
         path: ${{ inputs.working-dir }}/node_modules
         key: node-${{inputs.target-env}}-${{ hashFiles(format('{0}/{1}', inputs.working-dir, package-lock.json ) }}
 
-    - name: Install dependencies
-      shell: bash
-      working-directory: ${{ inputs.working-dir }}
-      if: steps.cache.outputs.cache-hit != 'true' &&  inputs.target-env == 'prod'
-      run: npm ci 
-
-    - name: Install dependencies
+    - name: Install dev dependencies
       shell: bash
       working-directory: ${{ inputs.working-dir }}
       if: steps.cache.outputs.cache-hit != 'true' &&  inputs.target-env == 'dev'
+      run: npm ci 
+      # run: ${{ inputs.target-env == 'dev' && 'npm cx' || 'npm ci --omit=dev' }}  ## instead of duplication
+
+    - name: Install prod dependencies
+      shell: bash
+      working-directory: ${{ inputs.working-dir }}
+      if: steps.cache.outputs.cache-hit != 'true' &&  inputs.target-env != 'dev'
       run: npm ci --omit=dev
