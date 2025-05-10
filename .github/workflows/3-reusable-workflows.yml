@@ -11,3 +11,5 @@ jobs:
 
     e2e-tests:
         uses: Isrealade/github-actions-course-example-e2e.git/.github/workflows/e2e.yml@6577841cef17e3eaa2590c5c968e62d36e92688d
+        secrets:
+            access-token: ${{ secrets.GH_TOKEN }}
